@@ -6,9 +6,8 @@ This is going to describe a email regular expression and give you a full breakdo
 
 A regular expression is used to give parameters on special characters for a search pattern in javascript.
 Below is an example of one used to search for an email.
-' code '
 
-/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+`/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
 
 The string can contain any lowercase letter between a–z
 
