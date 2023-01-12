@@ -1,10 +1,22 @@
-# Title (replace with your title)
+# Email Regular Expression (Email Regex)
 
-Introductory paragraph (replace this with your text)
+This is going to describe a email regular expression and give you a full breakdown of the structure.
 
 ## Summary
 
-Briefly summarize the regex you will be describing and what you will explain. Include a code snippet of the regex. Replace this text with your summary.
+A regular expression is used to give parameters on special characters for a search pattern in javascript.
+Below is an example of one used to search for an email.
+' code '
+
+/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+
+The string can contain any lowercase letter between a–z
+
+The string can contain any number between 0–9
+
+The string can contain an underscore or hyphen
+
+The string is between 3–16 characters long
 
 ## Table of Contents
 
