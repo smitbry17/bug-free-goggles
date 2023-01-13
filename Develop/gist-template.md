@@ -63,22 +63,79 @@ Quantifiers are used to set the limits of a string that you are searching for. T
 
 ### OR Operator
 
+Inside of a bracket expression the string does not need to exactly match all the parameters.
+
+Therefore you can use the OR expression `(|)` to define your search like this example
+
+`(a|b|c)`
+
+This tells it to look for `a` or `b` or `c `in the string
+
 ### Character Classes
+
+A character class is a set of characters that can be used to determine many different inputs in a string as a match.
+
+- `.` is used to match any character except the newline character `\n`
+- `\d` is used to match any arabic numeral digit
+- `\w` matches any alphanumeric character from the latin alphabet as well as the underscore `_`
+- `\s` matches a single white space character that includes a tab input or a line break
 
 ### Flags
 
-### Grouping and Capturing
+Flags are used at the end of a regular expression after the closing `/` and define other functionality or rules for the expression.
+There are six of these optional flags
+
+- `i` This flag makes the expression ignore capitals. so no difference between `A` and `a`
+- `g` This flag makes the expression search for all matches where it would normally stop after the first match
+- `m` This flag is for multiline mode
+- `u` This flag enables unicode support and enables the processing of surrogate pairs
+- `s` This flag enables dotall mode which allows a `.` to match a newline character like `\n`
+- `y` This flag is for sticky mode which has it search at the exact position of the text
+
+### Grouping
+
+Grouping constructs are used when a regex gets longer and you need to search for multiple parts of a string to verify it matches
+The main way of grouping expressions is using parentheses `()`
+The following example uses two groups `(abc):(def)` the colon `:` is used just in the middle of the string so the string to match would look like `abc:def`
+this will have it look for an exact match to these characters differently from a bracket expression they will always look for
+an exact match unless told otherwise
 
 ### Bracket Expressions
 
+Bracket expressions are used to match a range of characters given
+putting a hyphen `-` in the middle will give a range from the first input to the next like `[a-z]` will look for any letters from `a` to `z`
+
+- `[a-z]` searches for any lowercase letters in the range of letters given. To look for capitals you need to write `[A-Z]` or combine them to look for both `[a-zA-z]`
+- `[0-9]` tells it to look for any number from `0` to `9`
+- `[_-]` This shows that the string can contain a underscore `_` or a hyphen `-`. These are special characters and you can search for any special character to be in a string if put inside the brackets and not in between two letters or numbers to prevent searching for a range.
+
+So inside our example `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/` it is going to look for a range between `a-z` and numbers from `0-9` then multiple special characters then a `@` in the string then we look for arabic digits with `\d` then another range of `a-z` and special characters then the `{2,6}` will look for a string that is `2-6` characters
+
 ### Greedy and Lazy Match
+
+A lazy match will only look for the parameters that you are given and ignore anything else in the string.
+A greedy match will look for an entire line from beginning to end and will try to capture as much as it can.
+
+You may think that `<.+>` (. means any non newline character and + means one or more) would only match the `<em> and the </em>`, when in reality it will be very greedy, and go from the first `<` to the last `>`. This means it will match `<em>Hello World</em>` instead of what you wanted.
 
 ### Boundaries
 
+The character `\b` is an anchor like the caret `^` and the dollar sign `$`. It matches at a position that is called a “word boundary”.
+There are multiple spots that are considered a word boundary those are:
+Before the first character in the string, if the first character is a word character.
+After the last character in the string, if the last character is a word character.
+Between two characters in the string, where one is a word character and the other is not a word character.
+
 ### Back-references
+
+A back reference will look something like `\1` so in an example `(a-d)\1` this will match `aa` or `bb` or `cc` and also `dd`
 
 ### Look-ahead and Look-behind
 
+Lookahead and lookbehind, collectively called “lookaround”, are zero-length assertions just like the start and end of line, and start and end of word anchors explained earlier in this tutorial. The primary difference is lookaround assertions wont consume a string it will just look for a match then drop it and just return whether a match is possible or not. This is why they are called assertions because they just assert whether a match is possible or not. Lookarounds allow you to create regular expressions that would not work without them or would get very long.
+
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+Written by Bryan Smith. Student at University of Irvine california full Stack development bootcamp
+
+GITHUB: https://github.com/smitbry17
